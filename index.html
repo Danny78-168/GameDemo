@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>製作✈️@TG_APK1 - 遊戲大廳</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #090514;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+    }
+
+    /* --- 頂部 Header --- */
+    .game-header {
+      width: 100%;
+      background: linear-gradient(180deg, #1f1235 0%, #0d061a 100%);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand { font-size: 16px; font-weight: bold; color: #ffd700; letter-spacing: 1px; }
+
+    /* --- 單一入口頁面 (Entry Screen) --- */
+    #entryScreen {
+      width: 100%; min-height: calc(100vh - 45px); display: flex; flex-direction: column; align-items: center;
+    }
+    .entry-container {
+      width: 100%; max-width: 480px; padding: 20px 16px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; flex: 1;
+    }
+    .entry-title { font-size: 22px; font-weight: bold; color: #ffd700; margin-bottom: 16px; letter-spacing: 1px; }
+
+    .carousel-container { width: 100%; margin-bottom: 20px; }
+    .banner-carousel {
+      width: 100%; display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+      scroll-behavior: smooth; border-radius: 16px; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .banner-carousel::-webkit-scrollbar { display: none; }
+    .banner-slide { flex: 0 0 100%; width: 100%; scroll-snap-align: start; display: block; }
+    .entry-banner-img { width: 100%; border-radius: 16px; display: block; box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4); }
+    .swipe-hint { font-size: 11px; color: #a0a0a0; margin-top: 8px; letter-spacing: 0.5px; }
+
+    .game-select-group { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+    .entry-btn {
+      width: 100%; padding: 16px; border-radius: 14px; color: #ffffff; font-size: 17px;
+      font-weight: bold; border: none; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; gap: 8px; transition: transform 0.1s, box-shadow 0.1s;
+      text-decoration: none;
+    }
+    .entry-btn:active { transform: scale(0.98); }
+    .btn-thor { background: linear-gradient(135deg, #00c6ff, #0072ff); box-shadow: 0 4px 15px rgba(0, 198, 255, 0.4); }
+    .btn-mahjong { background: linear-gradient(135deg, #00b09b, #96c93d); box-shadow: 0 4px 15px rgba(0, 176, 155, 0.4); }
+    .btn-mahjong2 { background: linear-gradient(135deg, #11998e, #38ef7d); box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4); }
+    .btn-dog { background: linear-gradient(135deg, #ff9900, #ff5500); box-shadow: 0 4px 15px rgba(255, 153, 0, 0.4); }
+    .btn-bounty { background: linear-gradient(135deg, #8e2de2, #4a00e0); box-shadow: 0 4px 15px rgba(142, 45, 226, 0.4); }
+    .btn-dragon { background: linear-gradient(135deg, #b21f1f, #1a2a6c); box-shadow: 0 4px 15px rgba(178, 31, 31, 0.4); }
+    .btn-mt { background: linear-gradient(135deg, #ff4e50, #f9d423); box-shadow: 0 4px 15px rgba(255, 78, 80, 0.4); }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部 Header -->
+  <div class="game-header">
+    <div class="brand">製作✈️@TG_APK1 🎲</div>
+  </div>
+
+  <!-- 單一入口頁面 -->
+  <div id="entryScreen">
+    <div class="entry-container">
+      <div class="entry-title">製作✈️@TG_APK1</div>
+      
+      <!-- 輪播 Banner -->
+      <div class="carousel-container">
+        <div class="banner-carousel" id="bannerCarousel">
+          <a href="https://osc188.com" target="_blank" class="banner-slide"><img src="https://cdn.phototourl.com/member/2026-09-09-67eec5ae-f90c-4255-8e81-471beaa6282c.webp" class="entry-banner-img"></a>
+          <a href="https://osc188.com" target="_blank" class="banner-slide"><img src="https://cdn.phototourl.com/member/2026-09-09-3fe8aa7b-e774-4468-9fbd-9b6133e595db.webp" class="entry-banner-img"></a>
+          <a href="https://osc188.com" target="_blank" class="banner-slide"><img src="https://cdn.phototourl.com/member/2026-09-09-8a8206a5-36da-45e7-afa9-6bd9e2950b15.webp" class="entry-banner-img"></a>
+          <a href="https://osc188.com" target="_blank" class="banner-slide"><img src="https://cdn.phototourl.com/member/2026-09-09-561fe2f5-e751-4e23-a923-36061bdcbd52.webp" class="entry-banner-img"></a>
+          <a href="https://osc188.com" target="_blank" class="banner-slide"><img src="https://cdn.phototourl.com/member/2026-09-09-cf0d2e41-8244-48c4-a5fa-43b3d9b510e6.webp" class="entry-banner-img"></a>
+        </div>
+        <div class="swipe-hint">⟨ 自動輪播中 ‧ 可左右滑動 ‧ 點擊前往 OSC188.COM ⟩</div>
+      </div>
+
+      <!-- 入口選擇按鈕群 -->
+      <div class="game-select-group">
+        <!-- 雷神索爾2 試玩入口 -->
+        <button class="entry-btn btn-thor" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=129', '_blank')">⚡ 進入 雷神索爾2試玩</button>
+        <!-- 麻將發了 試玩入口 -->
+        <button class="entry-btn btn-mahjong" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=117', '_blank')">🀄 進入 麻將發了試玩</button>
+        <!-- 麻將發了2 試玩入口 -->
+        <button class="entry-btn btn-mahjong2" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=118', '_blank')">🀄 進入 麻將發了2試玩</button>
+        <!-- 狗來富 試玩入口 -->
+        <button class="entry-btn btn-dog" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=122', '_blank')">🐶 進入 狗來富試玩</button>
+        <!-- 賞金獵人 試玩入口 -->
+        <button class="entry-btn btn-bounty" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=131', '_blank')">🤠 進入 賞金獵人試玩</button>
+        <!-- 魔龍傳奇 試玩入口 -->
+        <button class="entry-btn btn-dragon" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=119', '_blank')">🐉 進入 魔龍傳奇試玩</button>
+        <!-- MT 試玩體驗入口 -->
+        <button class="entry-btn btn-mt" onclick="window.open('https://dev962.mtx99.net/?token=4da0f32ffb87da0defacffbb95a11a33', '_blank')">🔥 進入 MT試玩體驗</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let autoSlideInterval = null;
+
+    function startAutoSlide() {
+      const carousel = document.getElementById('bannerCarousel');
+      if (!carousel) return;
+      if (autoSlideInterval) clearInterval(autoSlideInterval);
+      autoSlideInterval = setInterval(() => {
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        if (carousel.scrollLeft >= maxScroll - 5) { carousel.scrollTo({ left: 0, behavior: 'smooth' }); }
+        else { carousel.scrollBy({ left: carousel.clientWidth, behavior: 'smooth' }); }
+      }, 3000);
+    }
+
+    window.onload = function() {
+      startAutoSlide();
+    };
+  </script>
+</body>
+</html>
