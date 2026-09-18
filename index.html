@@ -60,13 +60,36 @@
       text-decoration: none;
     }
     .entry-btn:active { transform: scale(0.98); }
-    .btn-thor { background: linear-gradient(135deg, #00c6ff, #0072ff); box-shadow: 0 4px 15px rgba(0, 198, 255, 0.4); }
-    .btn-mahjong { background: linear-gradient(135deg, #00b09b, #96c93d); box-shadow: 0 4px 15px rgba(0, 176, 155, 0.4); }
-    .btn-mahjong2 { background: linear-gradient(135deg, #11998e, #38ef7d); box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4); }
-    .btn-dog { background: linear-gradient(135deg, #ff9900, #ff5500); box-shadow: 0 4px 15px rgba(255, 153, 0, 0.4); }
-    .btn-bounty { background: linear-gradient(135deg, #8e2de2, #4a00e0); box-shadow: 0 4px 15px rgba(142, 45, 226, 0.4); }
-    .btn-dragon { background: linear-gradient(135deg, #b21f1f, #1a2a6c); box-shadow: 0 4px 15px rgba(178, 31, 31, 0.4); }
+    
+    /* 獨立入口按鈕樣式 */
+    .btn-rsg { background: linear-gradient(135deg, #f12711, #f5af19); box-shadow: 0 4px 15px rgba(245, 175, 25, 0.4); }
     .btn-mt { background: linear-gradient(135deg, #ff4e50, #f9d423); box-shadow: 0 4px 15px rgba(255, 78, 80, 0.4); }
+
+    /* RSG 遊戲選單 Modal */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.85); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 16px;
+    }
+    .modal-card {
+      background: #1a0c30; border: 2px solid #ffd700; border-radius: 16px; width: 100%; max-width: 380px; padding: 16px; color: #e2e2e2; font-size: 12px; line-height: 1.6;
+    }
+    .modal-card h3 { color: #ffd700; margin-bottom: 12px; font-size: 16px; text-align: center; }
+    
+    .rsg-grid { display: flex; flex-direction: column; gap: 10px; margin: 12px 0; max-height: 60vh; overflow-y: auto; padding-right: 4px; }
+    .rsg-game-btn {
+      width: 100%; padding: 13px; border-radius: 10px; color: #ffffff; font-size: 15px;
+      font-weight: bold; border: none; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; gap: 6px; transition: transform 0.1s;
+    }
+    .rsg-game-btn:active { transform: scale(0.98); }
+    .btn-thor { background: linear-gradient(135deg, #00c6ff, #0072ff); }
+    .btn-mahjong { background: linear-gradient(135deg, #00b09b, #96c93d); }
+    .btn-mahjong2 { background: linear-gradient(135deg, #11998e, #38ef7d); }
+    .btn-dog { background: linear-gradient(135deg, #ff9900, #ff5500); }
+    .btn-bounty { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
+    .btn-dragon { background: linear-gradient(135deg, #b21f1f, #1a2a6c); }
+
+    .close-modal-btn { width: 100%; background: #555; color: #fff; font-weight: bold; border: none; padding: 10px; border-radius: 8px; margin-top: 8px; cursor: pointer; font-size: 14px; }
   </style>
 </head>
 <body>
@@ -93,23 +116,29 @@
         <div class="swipe-hint">⟨ 自動輪播中 ‧ 可左右滑動 ‧ 點擊前往 OSC188.COM ⟩</div>
       </div>
 
-      <!-- 入口選擇按鈕群 -->
+      <!-- 主入口選擇按鈕群 -->
       <div class="game-select-group">
-        <!-- 雷神索爾2 試玩入口 -->
-        <button class="entry-btn btn-thor" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=129', '_blank')">⚡ 進入 雷神索爾2試玩</button>
-        <!-- 麻將發了 試玩入口 -->
-        <button class="entry-btn btn-mahjong" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=117', '_blank')">🀄 進入 麻將發了試玩</button>
-        <!-- 麻將發了2 試玩入口 -->
-        <button class="entry-btn btn-mahjong2" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=118', '_blank')">🀄 進入 麻將發了2試玩</button>
-        <!-- 狗來富 試玩入口 -->
-        <button class="entry-btn btn-dog" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=122', '_blank')">🐶 進入 狗來富試玩</button>
-        <!-- 賞金獵人 試玩入口 -->
-        <button class="entry-btn btn-bounty" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=131', '_blank')">🤠 進入 賞金獵人試玩</button>
-        <!-- 魔龍傳奇 試玩入口 -->
-        <button class="entry-btn btn-dragon" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=119', '_blank')">🐉 進入 魔龍傳奇試玩</button>
+        <!-- 獨立入口：RSG皇家按鈕 -->
+        <button class="entry-btn btn-rsg" onclick="openRsgModal()">👑 進入 RSG皇家試玩</button>
         <!-- MT 試玩體驗入口 -->
         <button class="entry-btn btn-mt" onclick="window.open('https://dev962.mtx99.net/?token=4da0f32ffb87da0defacffbb95a11a33', '_blank')">🔥 進入 MT試玩體驗</button>
       </div>
+    </div>
+  </div>
+
+  <!-- RSG 皇家電子試玩選單 Modal -->
+  <div class="modal-overlay" id="rsgModal">
+    <div class="modal-card">
+      <h3>👑 RSG皇家電子 - 選擇試玩遊戲</h3>
+      <div class="rsg-grid">
+        <button class="rsg-game-btn btn-thor" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=129', '_blank')">⚡ 雷神索爾2 試玩</button>
+        <button class="rsg-game-btn btn-mahjong" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=117', '_blank')">🀄 麻將發了 試玩</button>
+        <button class="rsg-game-btn btn-mahjong2" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=118', '_blank')">🀄 麻將發了2 試玩</button>
+        <button class="rsg-game-btn btn-dog" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=122', '_blank')">🐶 狗來富 試玩</button>
+        <button class="rsg-game-btn btn-bounty" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=131', '_blank')">🤠 賞金獵人 試玩</button>
+        <button class="rsg-game-btn btn-dragon" onclick="window.open('https://www.rsg-games.com/TryGame?lang=zh-TW&gameid=119', '_blank')">🐉 魔龍傳奇 試玩</button>
+      </div>
+      <button class="close-modal-btn" onclick="closeRsgModal()">關閉選單</button>
     </div>
   </div>
 
@@ -125,6 +154,14 @@
         if (carousel.scrollLeft >= maxScroll - 5) { carousel.scrollTo({ left: 0, behavior: 'smooth' }); }
         else { carousel.scrollBy({ left: carousel.clientWidth, behavior: 'smooth' }); }
       }, 3000);
+    }
+
+    function openRsgModal() {
+      document.getElementById('rsgModal').style.display = 'flex';
+    }
+
+    function closeRsgModal() {
+      document.getElementById('rsgModal').style.display = 'none';
     }
 
     window.onload = function() {
