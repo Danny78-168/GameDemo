@@ -91,9 +91,7 @@
     .btn-bounty { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
     .btn-dragon { background: linear-gradient(135deg, #b21f1f, #1a2a6c); }
     .btn-seth2 { background: linear-gradient(135deg, #ff8008, #ffc837); }
-    .btn-dg-link1 { background: linear-gradient(135deg, #00c6ff, #0072ff); }
-    .btn-dg-link2 { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
-    .btn-dg-link3 { background: linear-gradient(135deg, #f12711, #f5af19); }
+    .btn-dg-main { background: linear-gradient(135deg, #4158D0, #C850C0); }
 
     .close-modal-btn { width: 100%; background: #555; color: #fff; font-weight: bold; border: none; padding: 10px; border-radius: 8px; margin-top: 8px; cursor: pointer; font-size: 14px; }
   </style>
@@ -168,9 +166,7 @@
     <div class="modal-card">
       <h3>🎲 DG真人 - 選擇遊戲入口</h3>
       <div class="game-grid">
-        <button class="game-option-btn btn-dg-link1" onclick="window.open('https://dg38.net/action/assets/admin/js/jquery.blockUI.js', '_blank')">🎴 DG真人 入口 1 (blockUI)</button>
-        <button class="game-option-btn btn-dg-link2" onclick="window.open('https://dg38.net/action/assets/www/js/login.js', '_blank')">🎴 DG真人 入口 2 (Login)</button>
-        <button class="game-option-btn btn-dg-link3" onclick="window.open('https://dg38.net/action/assets/www/js/register.js', '_blank')">🎴 DG真人 入口 3 (Register)</button>
+        <button class="game-option-btn btn-dg-main" onclick="openDgGame()">🎴 DG真人 免費試玩 (自動跳轉)</button>
       </div>
       <button class="close-modal-btn" onclick="closeDgModal()">關閉選單</button>
     </div>
@@ -190,28 +186,23 @@
       }, 3000);
     }
 
-    function openRsgModal() {
-      document.getElementById('rsgModal').style.display = 'flex';
-    }
+    function openRsgModal() { document.getElementById('rsgModal').style.display = 'flex'; }
+    function closeRsgModal() { document.getElementById('rsgModal').style.display = 'none'; }
 
-    function closeRsgModal() {
-      document.getElementById('rsgModal').style.display = 'none';
-    }
+    function openAtgModal() { document.getElementById('atgModal').style.display = 'flex'; }
+    function closeAtgModal() { document.getElementById('atgModal').style.display = 'none'; }
 
-    function openAtgModal() {
-      document.getElementById('atgModal').style.display = 'flex';
-    }
+    function openDgModal() { document.getElementById('dgModal').style.display = 'flex'; }
+    function closeDgModal() { document.getElementById('dgModal').style.display = 'none'; }
 
-    function closeAtgModal() {
-      document.getElementById('atgModal').style.display = 'none';
-    }
-
-    function openDgModal() {
-      document.getElementById('dgModal').style.display = 'flex';
-    }
-
-    function closeDgModal() {
-      document.getElementById('dgModal').style.display = 'none';
+    // DG 兩階段自動跳轉邏輯
+    function openDgGame() {
+      const win = window.open('https://dg66.net/action/Opengame/freegame.aspx', '_blank');
+      setTimeout(() => {
+        if (win && !win.closed) {
+          win.location.href = 'https://dg66.net/action/Opengame/freegame2.aspx';
+        }
+      }, 300);
     }
 
     window.onload = function() {
